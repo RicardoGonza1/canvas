@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ciclos</title>
+     <link rel="stylesheet" href="style.css">
+     <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="shortcut icon" type="image/png" href="cliente.png">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+</head>
+  </head>
+  <body>
+    <h1>Dibujando lineas</h1>
+
+    <p>
+      <label for="n-lineas"><b>¿Cuantas lineas quieres?</b></label>
+      <input type="text"placeholder="# de lineas"maxlength="3"id="n-lineas">
+    </p>
+
+    <p>
+      <label for="color"><b>busca tu color y observa </b></label>
+      <input type="color"id="color"><br>
+    </p>
+
+    <p>
+      <b>Escoge en que parte lo quieres:</b>
+      <select id="lado">
+        <option value="superior_izquierdo">superior izquierdo</option>
+        <option value="superior_derecho">superior derecho</option>
+        <option value="inferior_izquierdo">inferior izquierdo</option>
+        <option value="inferior_derecho">inferior derecho</option>
+        <option value="todo">todo</option>
+      </select>
+    </p>
+
+    <p>
+      <label for="t-canvas"><b>¿De que tamaño lo quieres?</b></label>
+      <input type="text"placeholder="ejemplo:''300''"maxlength="4"id="t-canvas">
+    </p>
+
+    <p>
+      <input type="button"id="boton"value="hora de dibujar"><br>
+    </p>
+
+    <canvas id="dibujo1"></canvas>
+    <hr>
+    <script>
+    	var d = document.getElementById("dibujo1");
+var lienzo = d.getContext("2d");
+var n_lineas= document.getElementById("n-lineas");
+var boton= document.getElementById("boton");
+var color= document.getElementById("color");
+var lado= document.getElementById("lado");
+var t_canvas= document.getElementById("t-canvas");
+
+boton.addEventListener("click",dibujarGarabato);
+
+console.log(lienzo);
+
+function linea(xi,yi,xf,yf,color){
+  lienzo.beginPath();
+  lienzo.strokeStyle= color;
+  lienzo.moveTo(xi,yi);
+  lienzo.lineTo(xf,yf);
+  lienzo.stroke();
+  lienzo.closePath();
+}
+
+
+function dibujarGarabato(){
+  var dimensiones=parseInt(t_canvas.value);
+   d.width=dimensiones;
+   d.height=dimensiones;
+
+
+  var ladito=lado.value;
+  var colorsito=color.value;
+  var l=parseInt(n_lineas.value);
+  var lineas=l;
+
+  var sep=dimensiones/l;
+
+  if (ladito=="inferior_izquierdo" && l==parseInt(n_lineas.value) && dimensiones==parseInt(t_canvas.value) ) {
+    for (i=0;i<=lineas;i++) {
+    var yi=sep*i;
+    linea(1,yi,yi,dimensiones,colorsito);
+  }
+  }
+
+  else if (ladito=="superior_derecho" && l==parseInt(n_lineas.value) && dimensiones==parseInt(t_canvas.value)) {
+    for (i=0;i<=lineas;i++) {
+    var yi=sep*i;
+    var xf=sep*(i+1)-sep;
+    linea(yi,1,dimensiones,xf,colorsito);
+  }
+  }
+
+  else if (ladito=="superior_izquierdo" && l==parseInt(n_lineas.value) && dimensiones==parseInt(t_canvas.value)) {
+    for (i=0;i<=lineas;i++) {
+    var yi=sep*i;
+    var xf=sep*(i+1)-sep;
+    var yi1=dimensiones-yi;
+    linea(1,yi1,xf,1,colorsito)
+  }
+  }
+
+  else if(ladito=="inferior_derecho" && l==parseInt(n_lineas.value) && dimensiones==parseInt(t_canvas.value)) {
+    for (i=0;i<=lineas;i++) {
+    var yi=sep*i;
+    var xf=sep*(i+1)-sep;
+    var yi1=dimensiones-yi;
+    linea(yi1,dimensiones,dimensiones,xf,colorsito)
+  }
+  }
+  else if (ladito=="todo" && l==parseInt(n_lineas.value) && dimensiones==parseInt(t_canvas.value)) {
+    for (i=0;i<=lineas;i++) {
+    var yi=sep*i;
+    var xf=sep*(i+1)-sep;
+    var yi1=dimensiones-yi;
+    linea(1,yi,yi,dimensiones,colorsito);
+    linea(yi,1,dimensiones,xf,colorsito);
+    linea(1,yi1,xf,1,colorsito)
+    linea(yi1,dimensiones,dimensiones,xf,colorsito)
+  }
+  }
+  else {
+    alert(" ¡¡ERROR!! ¡¡ERROR!! ¡¡ERROR!! ¡¡ERROR!! ¡¡ERROR!! ¡¡ERROR!! ¡¡ERROR!! \n ¡¡ERROR!! ¡¡ERROR!! ¡¡ERROR!! ¡¡ERROR!! ¡¡ERROR!! ¡¡ERROR!! ¡¡ERROR!!\n                              IMPOSIBLE DE DIBUJAR")
+
+  }
+
+
+
+}
+    </script>
+
+  </body>
+</html>
