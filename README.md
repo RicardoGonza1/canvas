@@ -1,2 +1,2 @@
 # canvas
-trabajo de canvas
+trabajo de canvas con platzi
