@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ciclos</title>
+     <link rel="stylesheet" href="style.css">
+     <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<link rel="shortcut icon" type="image/png" href="cliente.png">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+</head>
+  </head>
+  <body>
+    <h1>Dibujando lineas</h1>
+
+    <p>
+      <label for="n-lineas"><b>¿Cuantas lineas quieres?</b></label>
+      <input type="text"placeholder="# de lineas"maxlength="3"id="n-lineas">
+    </p>
+
+    <p>
+      <label for="color"><b>busca tu color y observa </b></label>
+      <input type="color"id="color"><br>
+    </p>
+
+    <p>
+      <b>Escoge en que parte lo quieres:</b>
+      <select id="lado">
+        <option value="superior_izquierdo">superior izquierdo</option>
+        <option value="superior_derecho">superior derecho</option>
+        <option value="inferior_izquierdo">inferior izquierdo</option>
+        <option value="inferior_derecho">inferior derecho</option>
+        <option value="todo">todo</option>
+      </select>
+    </p>
+
+    <p>
+      <label for="t-canvas"><b>¿De que tamaño lo quieres?</b></label>
+      <input type="text"placeholder="ejemplo:''300''"maxlength="4"id="t-canvas">
+    </p>
+
+    <p>
+      <input type="button"id="boton"value="hora de dibujar"><br>
+    </p>
+
+    <canvas id="dibujo1"></canvas>
+    <hr>
+    <script src="dibujo.js"></script>
+
+  </body>
+</html>
